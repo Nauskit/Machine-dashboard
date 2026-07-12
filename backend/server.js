@@ -16,7 +16,7 @@ const client = mqtt.connect("mqtt://localhost:1883");
 
 client.on("connect", () => {
     console.log("MQTT Conneted");
-    client.subscribe("factory/machine1/status");
+    client.subscribe("factory/+/status");
 })
 
 client.on("message", (topic, message) => {
@@ -25,7 +25,6 @@ client.on("message", (topic, message) => {
     console.log(data);
 
     io.emit("machine-status", data)
-
 })
 
 server.listen(3000, () => {
