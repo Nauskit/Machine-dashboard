@@ -1,7 +1,7 @@
 const express = require('express');
 const http = require('http');
 const { Server } = require("socket.io");
-const mqtt = require('mqtt')
+const client = require('./config/mqtt')
 
 const app = express();
 const server = http.createServer(app);
@@ -12,7 +12,6 @@ const io = new Server(server, {
     }
 })
 
-const client = mqtt.connect("mqtt://localhost:1883");
 
 client.on("connect", () => {
     console.log("MQTT Conneted");
